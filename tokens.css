@@ -1,0 +1,244 @@
+/* Hallmark · genre: playful · design-system: design.md · designed-as-app
+ * theme: custom (vibe: "fresh aqua express-wash")
+ * paper: oklch(0.977 0.013 236.62) light / oklch(0.129 0.042 264.695) dark
+ * accent: oklch(0.5 0.134 242.749) light / oklch(0.746 0.16 232.661) dark
+ * display: Outfit · body: Work Sans
+ * axes: paper-band=light+dark · display-style=geometric-sans · accent-hue=cool
+ *
+ * Portable token contract for the John Doe Car Wash demo.
+ * Imported by src/app/globals.css. Every colour, size, easing and duration
+ * used anywhere in the site resolves to one of these names — no inline
+ * oklch()/hex values are permitted in components.
+ *
+ * Rules enforced here (see design.md):
+ *   · no pure white / pure black — every neutral carries a trace of the
+ *     anchor hue, so the surface never reads as a colder second white;
+ *   · one anchor family (~230–240) across washes, bands and scene art;
+ *   · a non-inverting `--band-*` statement band that stays dark in both themes.
+ */
+
+/* ── Palette · light ─────────────────────────────────────────────────────── */
+:root {
+  --paper: oklch(0.977 0.013 236.62);
+  --paper-2: oklch(0.951 0.023 232);
+  --surface: oklch(0.995 0.004 236);
+  --surface-2: oklch(0.985 0.006 236);
+  --ink: oklch(0.208 0.042 256);
+  --ink-2: oklch(0.372 0.044 253);
+  --ink-3: oklch(0.446 0.043 252);
+  --muted: oklch(0.968 0.013 232);
+  --border: oklch(0.929 0.026 232);
+  --border-strong: oklch(0.869 0.041 233);
+  --accent: oklch(0.5 0.134 242.749);
+  --accent-vivid: oklch(0.588 0.158 241.966);
+  --accent-2: oklch(0.609 0.126 221.723);
+  --accent-contrast: oklch(0.99 0.004 236);
+  --accent-soft: oklch(0.951 0.026 236.824);
+  --success: oklch(0.527 0.137 163.223);
+  --warning: oklch(0.555 0.145 66.5);
+  --danger: oklch(0.505 0.213 27.518);
+  --ring: oklch(0.5 0.134 242.749);
+  --overlay: oklch(0.208 0.042 265.755 / 0.55);
+
+  --shadow-sm: 0 1px 2px oklch(0.208 0.042 256 / 0.06);
+  --shadow-md: 0 4px 16px -4px oklch(0.208 0.042 256 / 0.1);
+  --shadow-lg: 0 24px 48px -20px oklch(0.208 0.042 256 / 0.22);
+  --glow-accent: 0 0 0 1px oklch(0.588 0.158 241.966 / 0.25),
+    0 12px 40px -12px oklch(0.588 0.158 241.966 / 0.45);
+
+  /* Decorative washes — gradients and tints. These exist as tokens so no
+     component ever inlines a raw colour, and a re-skin touches one file. */
+  --wash-1: oklch(0.78 0.12 236 / 0.45);
+  --wash-2: oklch(0.8 0.13 224 / 0.38);
+  --wash-3: oklch(0.86 0.07 234 / 0.42);
+  --band-tint: oklch(0.74 0.12 234 / 0.32);
+  --band-dark-1: oklch(0.6 0.15 238 / 0.55);
+  --band-dark-2: oklch(0.72 0.14 224 / 0.45);
+
+  /* Hand-built SVG scene art */
+  --scene-deep-1: oklch(0.28 0.06 248);
+  --scene-deep-2: oklch(0.18 0.05 254);
+  --scene-deep-3: oklch(0.22 0.07 240);
+  --scene-stroke: var(--accent);
+  --scene-stroke-deep: oklch(0.86 0.09 226);
+  --scene-fill: var(--accent-vivid);
+  --scene-fill-deep: oklch(0.72 0.13 226 / 0.16);
+  --scene-grid: var(--border);
+  --scene-grid-deep: oklch(1 0 0 / 0.06);
+  --scene-chip: oklch(1 0 0 / 0.12);
+
+  /* The dirtied treatment used on the “before” half of a comparison */
+  --dirt: oklch(0.42 0.03 70 / 0.28);
+
+  /* Status tints */
+  --tint-success: color-mix(in oklch, var(--success) 16%, transparent);
+  --tint-danger: color-mix(in oklch, var(--danger) 16%, transparent);
+  --tint-danger-soft: color-mix(in oklch, var(--danger) 7%, transparent);
+
+  /* A dark tint laid over an accent fill so a small light-on-accent label
+     keeps its contrast. Works in both themes because it darkens whichever
+     accent is active. */
+  --tint-on-accent: oklch(0.16 0.045 259 / 0.34);
+
+  /* Always-dark statement band.
+     Unlike `ink`/`paper`, these do NOT invert between themes — the drawn
+     wordmark hero is meant to read as a deep, cinematic band in both. */
+  --hero-bg: oklch(0.16 0.045 259);
+  --hero-bg-glow-1: oklch(0.62 0.15 232 / 0.4);
+  --hero-bg-glow-2: oklch(0.7 0.14 202 / 0.28);
+  --on-hero: oklch(0.99 0.004 240);
+  --on-hero-muted: oklch(0.8 0.025 244);
+  --on-hero-faint: oklch(0.63 0.03 248);
+  --hero-draw-from: oklch(0.82 0.13 232);
+  --hero-draw-to: oklch(0.88 0.12 198);
+
+  /* ── Statement band · non-inverting ──────────────────────────────────────
+   * Semantic aliases for the always-dark band. Components must use these —
+   * never `bg-ink text-paper`, which swaps and flips the band to a light
+   * surface in dark mode. Used by the hero, announcement bar, CTA band and
+   * `Badge tone="ink"`. */
+  --band-bg: var(--hero-bg);
+  --band-bg-2: oklch(0.23 0.05 252);
+  --band-ink: var(--on-hero);
+  --band-ink-muted: var(--on-hero-muted);
+  --band-ink-faint: var(--on-hero-faint);
+  --band-border: oklch(1 0 0 / 0.14);
+  --band-glow-1: var(--hero-bg-glow-1);
+  --band-glow-2: var(--hero-bg-glow-2);
+
+  color-scheme: light;
+}
+
+/* ── Palette · dark ──────────────────────────────────────────────────────── */
+.dark {
+  --paper: oklch(0.129 0.042 264.695);
+  --paper-2: oklch(0.168 0.038 262);
+  --surface: oklch(0.192 0.038 263);
+  --surface-2: oklch(0.232 0.038 262);
+  --ink: oklch(0.984 0.003 247.858);
+  --ink-2: oklch(0.869 0.022 252.894);
+  --ink-3: oklch(0.704 0.04 256.788);
+  --muted: oklch(0.232 0.038 262);
+  --border: oklch(0.279 0.041 260.031);
+  --border-strong: oklch(0.372 0.044 257.287);
+  --accent: oklch(0.746 0.16 232.661);
+  --accent-vivid: oklch(0.789 0.154 211.53);
+  --accent-2: oklch(0.789 0.154 211.53);
+  --accent-contrast: oklch(0.129 0.042 264.695);
+  --accent-soft: oklch(0.279 0.05 250);
+  --success: oklch(0.765 0.177 163.223);
+  --warning: oklch(0.828 0.189 84.429);
+  --danger: oklch(0.704 0.191 22.216);
+  --ring: oklch(0.746 0.16 232.661);
+  --overlay: oklch(0.06 0.02 265 / 0.72);
+
+  --shadow-sm: 0 1px 2px oklch(0.06 0.02 265 / 0.4);
+  --shadow-md: 0 4px 18px -4px oklch(0.06 0.02 265 / 0.5);
+  --shadow-lg: 0 28px 56px -24px oklch(0.06 0.02 265 / 0.7);
+  --glow-accent: 0 0 0 1px oklch(0.746 0.16 232.661 / 0.3),
+    0 12px 44px -12px oklch(0.746 0.16 232.661 / 0.5);
+
+  --wash-1: oklch(0.5 0.11 236 / 0.4);
+  --wash-2: oklch(0.55 0.12 224 / 0.34);
+  --wash-3: oklch(0.42 0.08 240 / 0.42);
+  --band-tint: oklch(0.5 0.1 236 / 0.35);
+
+  --dirt: oklch(0.34 0.03 70 / 0.34);
+  --tint-success: color-mix(in oklch, var(--success) 20%, transparent);
+  --tint-danger: color-mix(in oklch, var(--danger) 20%, transparent);
+  --tint-danger-soft: color-mix(in oklch, var(--danger) 10%, transparent);
+
+  /* Slightly lifted from `paper` so the band still reads as a distinct
+     surface against a dark page. */
+  --hero-bg: oklch(0.165 0.043 258);
+
+  color-scheme: dark;
+}
+
+/* ── Type ────────────────────────────────────────────────────────────────── */
+:root {
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 2.75rem;
+  --text-display-s: 3.25rem;
+  --text-display: 4rem;
+  --text-display-l: 4.75rem;
+
+  --leading-tight: 1.06;
+  --leading-snug: 1.22;
+  --leading-body: 1.7;
+  --tracking-display: -0.03em;
+  --tracking-caps: 0.14em;
+
+  --measure: 64ch;
+  --measure-tight: 46ch;
+}
+
+/* ── Space · 4pt scale ───────────────────────────────────────────────────── */
+:root {
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --shell: 76rem;
+  --shell-narrow: 52rem;
+}
+
+/* ── Radius ──────────────────────────────────────────────────────────────── */
+:root {
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────────── */
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --dur-1: 120ms;
+  --dur-2: 220ms;
+  --dur-3: 300ms;
+  --dur-4: 420ms;
+  --dur-5: 640ms;
+
+  /* Semantic aliases — the three duration buckets. */
+  --dur-micro: var(--dur-1);
+  --dur-short: var(--dur-2);
+  --dur-long: var(--dur-4);
+
+  --rule-hair: 1px;
+  --rule-heavy: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 1ms;
+    --dur-2: 1ms;
+    --dur-3: 1ms;
+    --dur-4: 1ms;
+    --dur-5: 1ms;
+  }
+}
