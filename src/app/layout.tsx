@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit, Work_Sans } from "next/font/google";
+import Script from 'next/script';
 
 import { BootSplash, RouteProgress } from "@/components/site/page-loader";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -144,6 +145,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData()) }}
         />
+        <Script src="https://scoutvero.awais.cc/t.js" strategy="afterInteractive" />
       </body>
     </html>
   );
